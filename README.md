@@ -44,3 +44,5 @@ Abrir http://localhost:8000 en el navegador.
   
 ## ADSO B
 Desarrollado por: Elizabeth padilla
+
+- Proyecto validado y listo para despliegue en GitHub Pages.
