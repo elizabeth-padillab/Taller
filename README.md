@@ -41,3 +41,6 @@ Abrir http://localhost:8000 en el navegador.
 - Gestion de Git y Commits: 20 pts
 - Despliegue y UX/UI: 15 pts
 - Sustentacion Presencial: 15 pts
+  
+## ADSO B
+Desarrollado por: Elizabeth padilla
