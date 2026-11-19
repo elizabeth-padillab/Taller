@@ -79,8 +79,6 @@ export function analizarSecuencia(arr) {
   }
 
   // 4. Patron Alternado o Progresion Decreciente Especial
-  // Ejemplo: 100, 93, 84, 73 (-7, -9, -11 => paso -2 en diferencias)
-  // O secuencia dual 6, 3, 12, 9, 36, 35
   if (d1.length >= 3) {
     const pasoDiferencias = d1[1] - d1[0];
     let diferenciasEnProgresion = true;
@@ -96,6 +94,31 @@ export function analizarSecuencia(arr) {
       return {
         tipo: "DIFERENCIAS_PROGRESIVAS",
         descripcion: `Diferencias sucesivas en progresion con variacion ${pasoDiferencias}`,
+        siguienteTermino: siguiente
+      };
+    }
+  }
+
+  // 5. Patron Dual / Alternado
+  if (n >= 5) {
+    const multPares = [];
+    const restasImpares = [];
+    for (let i = 0; i < n - 1; i++) {
+      if (i % 2 === 1 && arr[i] !== 0) {
+        multPares.push(arr[i + 1] / arr[i]);
+      } else if (i % 2 === 0 && i > 0) {
+        restasImpares.push(arr[i + 1] - arr[i]);
+      }
+    }
+    const factorFijo = multPares.length >= 2 && multPares.every(v => Math.abs(v - multPares[0]) < 1e-6);
+    if (factorFijo) {
+      const esMult = (n - 1) % 2 === 1;
+      const siguiente = esMult
+        ? arr[n - 1] * multPares[0]
+        : arr[n - 1] + (restasImpares[restasImpares.length - 1] + 2);
+      return {
+        tipo: "PATRON_DUAL_ALTERNADO",
+        descripcion: `Serie dual alternada (*${multPares[0]} en pasos pares)`,
         siguienteTermino: siguiente
       };
     }
